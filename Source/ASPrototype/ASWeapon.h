@@ -26,6 +26,9 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = Weapon)
 	USkeletalMeshComponent* Rifle;
 
+<<<<<<< HEAD
 	USkeletalMeshComponent* GetWeaponMesh();
 
+=======
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 };

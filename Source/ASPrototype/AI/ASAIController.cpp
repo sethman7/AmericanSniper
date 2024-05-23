@@ -13,7 +13,12 @@
 #include "Perception/AIPerceptionComponent.h"
 #include "Perception/AISenseConfig_Sight.h" //시야
 #include "Perception/AISenseConfig_Hearing.h" //사운드
+<<<<<<< HEAD
 #include "Perception/AISense_Touch.h"//감각
+=======
+#include "Perception/AISenseConfig_Touch.h"//감각
+#include "Perception/AISense_Touch.h"
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 #include "Enemy/ASEnemyCharacter.h"
 #include "Character/ASCharacterPlayer.h" //SetAngle 
@@ -190,6 +195,18 @@ void AASAIController::SetupPerception()
 		AIPerComp->ConfigureSense(*HearingConfig);
 		AIPerComp->SetDominantSense(HearingConfig->GetSenseImplementation());
 	}
+<<<<<<< HEAD
+=======
+
+	TouchConfig = CreateDefaultSubobject<UAISenseConfig_Touch>(TEXT("Touch Config"));
+	if (TouchConfig)
+	{
+		AIPerComp->ConfigureSense(*TouchConfig);
+		AIPerComp->SetDominantSense(TouchConfig->GetSenseImplementation());
+	}
+
+
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	AIPerComp->OnTargetPerceptionUpdated.AddDynamic(this, &AASAIController::On_Updated);
 
 }
@@ -202,7 +219,11 @@ void AASAIController::On_Updated(AActor* DetectedPawn, const  FAIStimulus Stimul
 	//시야 식별인 경우 
 	if (SensedClass== UAISense_Sight::StaticClass())
 	{
+<<<<<<< HEAD
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Sight Sense")));
+=======
+		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Sight Sense")));
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 		AASCharacterPlayer* CurPlayer = Cast<AASCharacterPlayer>(DetectedPawn);
 		CheckPlayer(CurPlayer);
@@ -233,6 +254,10 @@ void AASAIController::On_Updated(AActor* DetectedPawn, const  FAIStimulus Stimul
 	else if (SensedClass == UAISense_Touch::StaticClass())
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Touch Sense"))); 
+<<<<<<< HEAD
+=======
+		SetBB_IsDetect(true);
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 		//터치된 상대가 Player 캐스팅 성공 한 경우, 바로 Player에게 Focus On이 됨. ( UI바 상승 스피드 2배 UP )
 		//캐스팅 된 것이 총알이면 IsDetect==true
 	}
@@ -283,6 +308,10 @@ void AASAIController::Tick(float DeltaTime)
 		StopAI();
 	}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	if (CurSituation !=CurDetectSituation::NoneInRange)  
 	{
 		//Calculate Angle Value for UI Rotation
@@ -406,6 +435,30 @@ FVector AASAIController::GetBB_AttackRange()
 	return GetBlackboardComponent()->GetValueAsVector(BBKEY_AttackRange);
 }
 
+<<<<<<< HEAD
+=======
+void AASAIController::SetBB_CanVariousActions(bool b)
+{
+	GetBlackboardComponent()->SetValueAsBool(BBKEY_CanVariousActions, b);
+}
+
+bool AASAIController::GetBB_CanVariousActions()
+{
+	return GetBlackboardComponent()->GetValueAsBool(BBKEY_CanVariousActions);
+}
+
+
+void AASAIController::SetBB_IsAttack(bool b)
+{
+		GetBlackboardComponent()->SetValueAsBool(BBKEY_IsAttack, b);
+}
+
+bool AASAIController::GetBB_IsAttack()
+{
+	return  GetBlackboardComponent()->GetValueAsBool(BBKEY_IsAttack);
+}
+
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 void AASAIController::SetBB_EnableRoaming(bool b)
 {
 	GetBlackboardComponent()->SetValueAsBool(BBKEY_EnableRoaming, b);
@@ -434,6 +487,11 @@ FVector AASAIController::GetBB_LastKnownPosition()
 }
 
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 //GetSet
 UASDetectWidget* AASAIController::getWidget()
 {
@@ -453,6 +511,18 @@ AActor* AASAIController::GetPlayer()
 	return Actor;
 }
 
+<<<<<<< HEAD
+=======
+bool AASAIController::IsPlayer(AActor* actor)
+{
+	AASCharacterPlayer* player = Cast<AASCharacterPlayer>(actor);
+	if (player)
+	{
+		return true;
+	}
+	return false;
+}
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 //Setting RangeSize 
 void AASAIController::RangeSizeDown()

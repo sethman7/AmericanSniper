@@ -54,7 +54,11 @@ void UASDetectWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	Super::NativeTick(MyGeometry, InDeltaTime);
 	//timeline.TickTimeline(InDeltaTime);
 
+<<<<<<< HEAD
 	if (Owner!=nullptr) //이곳에 들어왔다는 건 AI의 Beginplay()가 호출됬음을 의미함 
+=======
+	if (Owner!=nullptr) //이곳에 들어왔다는 건 AI의 Beginplay()가 호출됬음을 의미함  , 재확인필요
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	{	
 		AiRef = Cast<AASAIController>(Owner);
 		//ensure(AiRef); //AI 객체 얻기 성공

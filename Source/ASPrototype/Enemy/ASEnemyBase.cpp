@@ -8,8 +8,14 @@
 #include "AI/ASAIController.h"
 #include "UI/ASDetectWidget.h"
 #include "Tool/ASWeaponData.h"
+<<<<<<< HEAD
 #include "Tool/ASWeaponItem.h"
 #include "Components/WidgetComponent.h"
+=======
+#include "Perception/AISense_Touch.h"
+#include "Components/WidgetComponent.h"
+#include "Components/PrimitiveComponent.h"
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 // Sets default values
 AASEnemyBase::AASEnemyBase()
@@ -38,7 +44,12 @@ AASEnemyBase::AASEnemyBase()
 	//Mesh
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -100.0f), FRotator(0.0f, -90.f, 0.0f));
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
+<<<<<<< HEAD
 	GetMesh()->SetCollisionProfileName(TEXT("NoCollision"));
+=======
+	GetMesh()->SetCollisionProfileName(TEXT("ASEnemyMesh"));
+	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AASEnemyBase::OnHit);
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 	//Widget
 	QuestionMark = CreateDefaultSubobject<UWidgetComponent>(TEXT("QuestionMarkWidget"));
@@ -116,14 +127,22 @@ void AASEnemyBase::SetHp(uint32 Hp)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Black, FString::Printf(TEXT("Enemy Dead")));
 		CurState = EState::Dead;  
+<<<<<<< HEAD
 		Dead();
+=======
+		SetDead();
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 		return;
 	}
 	CurHp = Hp;
 	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Purple, FString::Printf(TEXT("EnemyHp : %d"), CurHp));
 }
 
+<<<<<<< HEAD
 void AASEnemyBase::Dead()
+=======
+void AASEnemyBase::SetDead()
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 {
 	//UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	//AnimInstance->StopAllMontages(0.0f);
@@ -139,6 +158,39 @@ void AASEnemyBase::Dead()
 		}), DelayTime-0.5, false);
 }
 
+<<<<<<< HEAD
+=======
+void AASEnemyBase::RandomActions()
+{
+	/*
+	result[0] , 30ÇÁ·Î È®·ü -> 
+	result[1] , 50ÇÁ·Î È®·ü -> ÀçÀåÀü 
+	result[2] , 70ÇÁ·Î È®·ü -> 
+	*/
+	bool result[3];
+	for (int i = 3; i <= 7; i++)
+	{
+		int RandomNumber = rand() % 10;
+		result[i] = i > RandomNumber;
+		i = +2;
+	}
+
+
+
+
+}
+
+void AASEnemyBase::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit)
+{
+	if (CurState == EState::Attack) { return; }
+	bool result = AiRef->IsPlayer(OtherActor);
+	if (result)
+	{
+		UAISense_Touch::ReportTouchEvent(GetWorld(), this, OtherActor, NormalImpulse);
+	}
+}
+
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 void AASEnemyBase::EquipWeapon(UASWeaponData* NewWeaponData)
 {
 	if (NewWeaponData)

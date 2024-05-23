@@ -6,7 +6,10 @@
 #include "InputActionValue.h"
 #include "Character/ASCharacterBase.h"
 #include "Player/ASPlayerController.h"
+<<<<<<< HEAD
 #include "Tool/ASWeaponData.h"
+=======
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 #include "ASCharacterPlayer.generated.h"
 
 /**
@@ -53,6 +56,7 @@ public:
 	UPROPERTY(VisibleAnywhere, Category = Weapon)
 	UStaticMeshComponent* SnipCamAttachment;
 
+<<<<<<< HEAD
 	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser) override;
 
 private:
@@ -64,6 +68,13 @@ private:
 
 public:
 	void ChangeWeaponMesh(UASWeaponData* NewWeaponData);
+=======
+
+
+
+	virtual float TakeDamage(float DamageAmount,struct FDamageEvent const& DamageEvent,class AController* EventInstigator, AActor* DamageCauser) override;
+
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 private:
 	void Move(const FInputActionValue& Value);
@@ -137,5 +148,8 @@ private:
 	UFUNCTION()
 	void OutItemOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 };

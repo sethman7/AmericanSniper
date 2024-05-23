@@ -49,6 +49,12 @@ void UBTTask_Combat::TickTask(UBehaviorTreeComponent& OwnerComp, uint8* NodeMemo
 	if (!(IsPlaying && Enemy->CurState == EState::Attack))
 	{	
 		AI->SetBB_CanShootTarget(Enemy->IsPlayer);
+<<<<<<< HEAD
+=======
+		int RandomNumber = rand() % 10;
+		bool result = (5 >= RandomNumber);
+		AI->SetBB_CanVariousActions(result);
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 		FinishLatentTask(OwnerComp, EBTNodeResult::Succeeded);
 	}
 }

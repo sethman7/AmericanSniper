@@ -43,8 +43,15 @@ public:
 
 	uint32 GetHp();
 	void SetHp(uint32 Hp);
+<<<<<<< HEAD
 	void Dead();
 
+=======
+	virtual void SetDead();
+	void RandomActions();
+	UFUNCTION()
+	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 private:
 	uint32 MaxHp;
 	uint32 CurHp;
@@ -78,6 +85,12 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animation)
 	TObjectPtr<class UAnimMontage> AttackMontage;
 
+<<<<<<< HEAD
+=======
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animation)
+	TObjectPtr<class UAnimMontage> ReloadMontage;
+
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 
 

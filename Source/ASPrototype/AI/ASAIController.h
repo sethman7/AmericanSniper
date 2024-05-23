@@ -59,6 +59,10 @@ public:
 	//Get,Set
 	bool SetAlertLvl(AlertLvl NewLVl);
 	AActor* GetPlayer();
+<<<<<<< HEAD
+=======
+	bool IsPlayer(AActor* actor);
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	class UASDetectWidget* getWidget();
 	
 
@@ -91,6 +95,14 @@ public:
 	void SetBB_AttackRange(FVector vector);
 	FVector GetBB_AttackRange();
 
+<<<<<<< HEAD
+=======
+	void SetBB_CanVariousActions(bool b);
+	bool GetBB_CanVariousActions();
+
+	void SetBB_IsAttack(bool b);
+	bool GetBB_IsAttack();
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 	//SetRangeSize
 	void RangeSizeDown();
@@ -122,7 +134,11 @@ private:
 	class UAIPerceptionComponent* AIPerComp;
 	class UAISenseConfig_Sight* SightConfig;
 	class UAISenseConfig_Hearing* HearingConfig;
+<<<<<<< HEAD
 
+=======
+	class UAISenseConfig_Touch* TouchConfig;
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	//BB,BT 
 	UPROPERTY()
 	TObjectPtr<class UBlackboardData> BBAsset;

@@ -152,6 +152,7 @@ AASCharacterPlayer::AASCharacterPlayer()
 		WeaponAttachment->SetupAttachment(GetMesh(), WeaponAttachmentSocket);
 	}
 	
+<<<<<<< HEAD
 
 	//무기1 세팅 
 	static ConstructorHelpers::FObjectFinder<UASWeaponData> StartWeaponRef1(TEXT("/Script/ASPrototype.ASWeaponData'/Game/ASPrototype/Weapon/AssultRifle.AssultRifle'"));
@@ -165,6 +166,8 @@ AASCharacterPlayer::AASCharacterPlayer()
 	{
 		Weapon2 = Cast<UASWeaponData>(StartWeaponRef2.Object);
 	}
+=======
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 }
 
 void AASCharacterPlayer::Tick(float DeltaTime)
@@ -254,9 +257,13 @@ void AASCharacterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction(TEXT("GetDamage"), EInputEvent::IE_Pressed, this, &AASCharacterBase::TestingGetDamage);
 	PlayerInputComponent->BindAction(TEXT("GetItem"), EInputEvent::IE_Pressed, this, &AASCharacterPlayer::GripItem);
 
+<<<<<<< HEAD
 	PlayerInputComponent->BindAction(TEXT("GetWeapon1"), EInputEvent::IE_Pressed, this, &AASCharacterPlayer::ChangeWeapon1);
 	PlayerInputComponent->BindAction(TEXT("GetWeapon2"), EInputEvent::IE_Pressed, this, &AASCharacterPlayer::ChangeWeapon2);
 	//PlayerInputComponent->BindAction(TEXT("GetWeapon2"), EInputEvent::IE_Pressed, this, &AASCharacterPlayer::ChangeWeapon(1));
+=======
+
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 	//향상된 입력 시스템 사용
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent);
@@ -327,6 +334,7 @@ void AASCharacterPlayer::AttackCheck()
 {
 	
 	FHitResult OutHit;
+<<<<<<< HEAD
 
 	FVector Location;
 	FRotator Rotation;
@@ -343,13 +351,23 @@ void AASCharacterPlayer::AttackCheck()
 	//UE_LOG(LogTemp, Error, TEXT("StartVector is %s"), *CurrentWeapon->GetActorForwardVector().ToString());
 	//FVector End = ((GetActorForwardVector() * 1000.0f) + Start);
 
+=======
+	//FVector Start = CurrentWeapon->GetActorForwardVector();
+	FVector Start = GetActorLocation();
+	//UE_LOG(LogTemp, Log, TEXT("Character Location :: %s"), CurrentWeapon->GetActorForwardVector().ToString());
+	UE_LOG(LogTemp, Error, TEXT("StartVector is %s"), *CurrentWeapon->GetActorForwardVector().ToString());
+	FVector End = ((GetActorForwardVector() * 1000.0f) + Start);
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	FCollisionQueryParams CollisionParams(NAME_None,false,this);
 	//FCollisionQueryParams CollisionParams;
 
 	DrawDebugLine(GetWorld(), Start, End, FColor::Green, true);
 
 	bool isHit = (GetWorld()->LineTraceSingleByChannel(OutHit, Start, End, ECC_Visibility, CollisionParams));
+<<<<<<< HEAD
 	//bool isHit = (GetWorld()->LineTraceSingleByChannel(OutHit, Start, End, ECC_PhysicsBody, CollisionParams));
+=======
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 	if (isHit)
 	{
@@ -362,6 +380,7 @@ void AASCharacterPlayer::AttackCheck()
 		TSubclassOf<UDamageType> DamageType= UDamageType::StaticClass();
 		FPointDamageEvent PointDamageEvent(float(GetStrength()), OutHit, ShotDirection, DamageType);
 		PointDamageEvent.HitInfo = OutHit;
+<<<<<<< HEAD
 		UE_LOG(AS, Warning, TEXT("BoneName: %s"), *OutHit.BoneName.ToString());
 		if (OutHit.BoneName == "head")
 		{
@@ -370,6 +389,9 @@ void AASCharacterPlayer::AttackCheck()
 		else {
 			OutHit.GetActor()->TakeDamage(GetStrength(), PointDamageEvent, GetController(), this);
 		}
+=======
+		OutHit.GetActor()->TakeDamage(GetStrength(), PointDamageEvent, GetController(), this);
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	}
 }
 
@@ -466,6 +488,7 @@ float AASCharacterPlayer::TakeDamage(float DamageAmount, FDamageEvent const& Dam
 	return FinalDamage;
 }
 
+<<<<<<< HEAD
 void AASCharacterPlayer::ChangeWeapon(int weaponindex)
 {
 	switch (weaponindex)
@@ -498,6 +521,8 @@ void AASCharacterPlayer::ChangeWeaponMesh(UASWeaponData* NewWeaponData)
 	}
 }
 
+=======
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 //움직임 구현
 void AASCharacterPlayer::Move(const FInputActionValue& Value) 
 {

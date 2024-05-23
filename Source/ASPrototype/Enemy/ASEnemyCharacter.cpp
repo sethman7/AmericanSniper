@@ -8,16 +8,27 @@
 #include "Engine/DamageEvents.h"
 #include "Engine/EngineTypes.h"
 #include "Components/SkinnedMeshComponent.h"
+<<<<<<< HEAD
 
 AASEnemyCharacter::AASEnemyCharacter()
 {
 	AIControllerClass = AASAIController::StaticClass();
 
+=======
+#include "Perception/AISense_Touch.h"
+AASEnemyCharacter::AASEnemyCharacter()
+{
+	AIControllerClass = AASAIController::StaticClass();
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 }
 
 float AASEnemyCharacter::TakeDamage(float DamageAmount, struct FDamageEvent const& DamageEvent, class AController* EventInstigator, AActor* DamageCauser)
 {
 	Super::TakeDamage(DamageAmount, DamageEvent, EventInstigator, DamageCauser);
+<<<<<<< HEAD
+=======
+	UAISense_Touch::ReportTouchEvent(GetWorld(), this,AiRef->GetPlayer(),GetActorLocation());
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	SetHp(GetHp()-DamageAmount);
 	return DamageAmount;
 }
@@ -79,7 +90,11 @@ void AASEnemyCharacter::AttackCheck()
 {
 	FHitResult OutHit;
 	FDamageEvent DamageEvent;
+<<<<<<< HEAD
 	FVector Start = GetActorLocation();//aponInfo->WeaponModel->GetComponentLocation();
+=======
+	FVector Start = GetActorLocation(); //ÃÑ±â ¼ÒÄÏ 
+>>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	FVector ForwardVector = GetActorForwardVector();
 	FVector End = (Start + (ForwardVector * 1000.0f));
 
