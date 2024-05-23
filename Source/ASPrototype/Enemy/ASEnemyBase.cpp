@@ -4,18 +4,13 @@
 #include "Enemy/ASEnemyBase.h"
 #include "Components/CapsuleComponent.h"
 #include "GameFramework/CharacterMovementComponent.h"
-//BBÁ¤º¸ ¾ò±â À§ÇØ 
+//BBï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 #include "AI/ASAIController.h"
 #include "UI/ASDetectWidget.h"
 #include "Tool/ASWeaponData.h"
-<<<<<<< HEAD
-#include "Tool/ASWeaponItem.h"
-#include "Components/WidgetComponent.h"
-=======
 #include "Perception/AISense_Touch.h"
 #include "Components/WidgetComponent.h"
 #include "Components/PrimitiveComponent.h"
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 // Sets default values
 AASEnemyBase::AASEnemyBase()
@@ -44,12 +39,8 @@ AASEnemyBase::AASEnemyBase()
 	//Mesh
 	GetMesh()->SetRelativeLocationAndRotation(FVector(0.0f, 0.0f, -100.0f), FRotator(0.0f, -90.f, 0.0f));
 	GetMesh()->SetAnimationMode(EAnimationMode::AnimationBlueprint);
-<<<<<<< HEAD
-	GetMesh()->SetCollisionProfileName(TEXT("NoCollision"));
-=======
 	GetMesh()->SetCollisionProfileName(TEXT("ASEnemyMesh"));
 	GetCapsuleComponent()->OnComponentHit.AddDynamic(this, &AASEnemyBase::OnHit);
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 	//Widget
 	QuestionMark = CreateDefaultSubobject<UWidgetComponent>(TEXT("QuestionMarkWidget"));
@@ -74,7 +65,7 @@ AASEnemyBase::AASEnemyBase()
 	Damage = 10;
 	CurState = EState::Idle; 
 
-	//½ºÄÌ·¹Åæ + ¾Ö´Ï¸ÞÀÌ¼Ç Àû¿ë 
+	//ï¿½ï¿½ï¿½Ì·ï¿½ï¿½ï¿½ + ï¿½Ö´Ï¸ï¿½ï¿½Ì¼ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	static ConstructorHelpers::FObjectFinder<USkeletalMesh> CharaterMeshRef(TEXT("/Script/Engine.SkeletalMesh'/Game/ASPrototype/Enemy/Enemy/Meshes/SK_HeavyGSoldier_simple.SK_HeavyGSoldier_simple'"));
 	if (CharaterMeshRef.Object)
 	{
@@ -95,7 +86,7 @@ AASEnemyBase::AASEnemyBase()
 	WeaponMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("CurrentWeapon"));
 	WeaponMesh->SetupAttachment(GetMesh(), FName(TEXT("Weapon_Socket")));
 
-	//¹«±â1 ¼¼ÆÃ 
+	//ï¿½ï¿½ï¿½ï¿½1 ï¿½ï¿½ï¿½ï¿½ 
 	static ConstructorHelpers::FObjectFinder<UASWeaponData> StartWeaponRef1(TEXT("/Script/ASPrototype.ASWeaponData'/Game/ASPrototype/Weapon/AssultRifle.AssultRifle'"));
 	if (StartWeaponRef1.Object)
 	{
@@ -103,7 +94,7 @@ AASEnemyBase::AASEnemyBase()
 		
 		EquipWeapon(Weapon1);
 	}
-	//¹«±â2 ¼¼ÆÃ 
+	//ï¿½ï¿½ï¿½ï¿½2 ï¿½ï¿½ï¿½ï¿½ 
 	static ConstructorHelpers::FObjectFinder<UASWeaponData> StartWeaponRef2(TEXT("/Script/ASPrototype.ASWeaponData'/Game/ASPrototype/Weapon/Sniper.Sniper'"));
 	if (StartWeaponRef2.Object)
 	{
@@ -127,22 +118,14 @@ void AASEnemyBase::SetHp(uint32 Hp)
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Black, FString::Printf(TEXT("Enemy Dead")));
 		CurState = EState::Dead;  
-<<<<<<< HEAD
-		Dead();
-=======
 		SetDead();
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 		return;
 	}
 	CurHp = Hp;
 	GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Purple, FString::Printf(TEXT("EnemyHp : %d"), CurHp));
 }
 
-<<<<<<< HEAD
-void AASEnemyBase::Dead()
-=======
 void AASEnemyBase::SetDead()
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 {
 	//UAnimInstance* AnimInstance = GetMesh()->GetAnimInstance();
 	//AnimInstance->StopAllMontages(0.0f);
@@ -158,14 +141,12 @@ void AASEnemyBase::SetDead()
 		}), DelayTime-0.5, false);
 }
 
-<<<<<<< HEAD
-=======
 void AASEnemyBase::RandomActions()
 {
 	/*
-	result[0] , 30ÇÁ·Î È®·ü -> 
-	result[1] , 50ÇÁ·Î È®·ü -> ÀçÀåÀü 
-	result[2] , 70ÇÁ·Î È®·ü -> 
+	result[0] , 30ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ -> 
+	result[1] , 50ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ -> ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
+	result[2] , 70ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ -> 
 	*/
 	bool result[3];
 	for (int i = 3; i <= 7; i++)
@@ -190,7 +171,6 @@ void AASEnemyBase::OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, 
 	}
 }
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 void AASEnemyBase::EquipWeapon(UASWeaponData* NewWeaponData)
 {
 	if (NewWeaponData)
@@ -212,7 +192,7 @@ void AASEnemyBase::AttackEnd(const float InDelayTime)
 	GetWorld()->GetTimerManager().SetTimer(myTimerHandle, FTimerDelegate::CreateLambda([&]()
 		{
 			OnAttackEnd.Broadcast();
-			// Å¸ÀÌ¸Ó ÃÊ±âÈ­
+			// Å¸ï¿½Ì¸ï¿½ ï¿½Ê±ï¿½È­
 			GetWorld()->GetTimerManager().ClearTimer(myTimerHandle);
 		}), InDelayTime, false);
 }
@@ -280,7 +260,7 @@ void AASEnemyBase::SetStateAnimation(EState NewState)
 		break;
 	case EState::Chasing:
 		//WeaponInfo->WeaponModel->SetHiddenInGame(false);
-		GetCharacterMovement()->MaxWalkSpeed = RunSpeed; // »óÅÂº¯È­¿¡¼­ °¡Àå ÀÇ¹Ì
+		GetCharacterMovement()->MaxWalkSpeed = RunSpeed; // ï¿½ï¿½ï¿½Âºï¿½È­ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½
 		//AiRef->RangeSizeUP();
 		break;
 

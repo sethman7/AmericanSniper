@@ -6,17 +6,11 @@
 #include "Enemy/ASEnemyCharacter.h"
 #include "ASFinalTarget.generated.h"
 
-<<<<<<< HEAD
-/**
- * 
- */
-=======
 
 /**
  * 
  */
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 UCLASS()
 class ASPROTOTYPE_API AASFinalTarget : public AASEnemyCharacter
 {
@@ -24,12 +18,7 @@ class ASPROTOTYPE_API AASFinalTarget : public AASEnemyCharacter
 	
 public:
 	AASFinalTarget();
-<<<<<<< HEAD
-
-};
-=======
 	virtual void SetDead() override;
 
 };
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de

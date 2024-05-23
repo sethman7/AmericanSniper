@@ -5,18 +5,18 @@
 #include "Animation/ASAnimInstance.h"
 #include "Player/ASPlayerState.h"
 #include "ASWeapon.h"
-//Ä«¸Þ¶ó Çì´õÆÄÀÏ
+//Ä«ï¿½Þ¶ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include "Camera/CameraComponent.h"
 #include "GameFramework/SpringArmComponent.h"
-//ÀÔ·Â¿¬°á Çì´õÆÄÀÏ
+//ï¿½Ô·Â¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include "InputMappingContext.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
-//ÄÉ¸¯ÅÍ ¿òÁ÷ÀÓ Çì´õÆÄÀÏ
+//ï¿½É¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include"GameFramework/CharacterMovementComponent.h"
-//ÄÄÆ÷³ÍÆ® Ãæµ¹ Çì´õÆÄÀÏ
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 #include "Components/CapsuleComponent.h"
-//¼Ò¸®¹üÀ§¸¦ À§ÇÑ ¼öÇÐ°ø½Ä
+//ï¿½Ò¸ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ð°ï¿½ï¿½ï¿½
 #include "Math/UnrealMathUtility.h"
 
 #include "Engine/DamageEvents.h"
@@ -30,7 +30,7 @@ AASCharacterPlayer::AASCharacterPlayer()
 
 	isItemNearby = false;
 
-	//Ä«¸Þ¶ó
+	//Ä«ï¿½Þ¶ï¿½
 	CameraBoom = CreateDefaultSubobject<USpringArmComponent>(TEXT("CameraBoom"));
 	CameraBoom->SetupAttachment(RootComponent);
 	CameraBoom->TargetArmLength = 400.f;
@@ -48,19 +48,19 @@ AASCharacterPlayer::AASCharacterPlayer()
 	//SnipCam->SetupAttachment(SnipSpringArm, USpringArmComponent::SocketName);
 	//SnipCam->bUsePawnControlRotation = false;
 
-	//»ç¿îµå ¹üÀ§ »çÀÌÁî º¯¼öµé
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	MinSoundRange = 100.0f;
 	MaxSoundRange = 300.0f;
 	WalkSoundMultiplier = 1.0f;
 	RunSoundMultiplier = 3.0f;
 
-	// ¼Ò¸® ¹üÀ§ ÄÄÆ÷³ÍÆ® »ý¼º ¹× ¼³Á¤
+	// ï¿½Ò¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	SoundRangeCapsule = CreateDefaultSubobject<UCapsuleComponent>(TEXT("SoundRangeCapsule"));
 	SoundRangeCapsule->SetupAttachment(RootComponent);
 	SoundRangeCapsule->SetCollisionProfileName(TEXT("SoundRange")); 
-	SoundRangeCapsule->SetCollisionEnabled(ECollisionEnabled::QueryOnly); // Ãæµ¹ °Ë»ç¸¸ ¼öÇà
-	SoundRangeCapsule->SetCapsuleSize(50.0f, 20.0f); // Å©±â ¼³Á¤ (¹ÝÁö¸§, ³ôÀÌ)
-	SoundRangeCapsule->SetRelativeLocation(FVector(0.0f, 0.0f, -90.0f)); // »ó´ë À§Ä¡ ¼³Á¤
+	SoundRangeCapsule->SetCollisionEnabled(ECollisionEnabled::QueryOnly); // ï¿½æµ¹ ï¿½Ë»ç¸¸ ï¿½ï¿½ï¿½ï¿½
+	SoundRangeCapsule->SetCapsuleSize(50.0f, 20.0f); // Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½)
+	SoundRangeCapsule->SetRelativeLocation(FVector(0.0f, 0.0f, -90.0f)); // ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 
 	ItemCheckSphere = CreateDefaultSubobject<UCapsuleComponent>(TEXT("ItemCheckSphere"));
 	ItemCheckSphere->SetupAttachment(RootComponent);
@@ -74,12 +74,12 @@ AASCharacterPlayer::AASCharacterPlayer()
 
 	ClothesMesh = CreateDefaultSubobject<USkeletalMeshComponent>(TEXT("ClothesMesh"));
 	ClothesMesh->SetupAttachment(RootComponent);
-	//¿Ê »çÀÌÁî ÀÓ½Ã ¼³Á¤
+	//ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ó½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	ClothesMesh->SetRelativeLocation(FVector(- 1.0f, 6.0f, -115.0f));
 	ClothesMesh->SetRelativeRotation(FRotator(0.0f, -60.0f,0.0f));
 	ClothesMesh->SetRelativeScale3D(FVector(1.1f,1.1f,1.1f));
 
-	//ÀÔ·Â
+	//ï¿½Ô·ï¿½
 	static ConstructorHelpers::FObjectFinder<UInputMappingContext> InputMappingContextRef(TEXT("/Game/ASPrototype/Input/IMC_Third.IMC_Third"));
 	if (InputMappingContextRef.Object)
 	{
@@ -152,22 +152,19 @@ AASCharacterPlayer::AASCharacterPlayer()
 		WeaponAttachment->SetupAttachment(GetMesh(), WeaponAttachmentSocket);
 	}
 	
-<<<<<<< HEAD
 
-	//¹«±â1 ¼¼ÆÃ 
+	//ï¿½ï¿½ï¿½ï¿½1 ï¿½ï¿½ï¿½ï¿½ 
 	static ConstructorHelpers::FObjectFinder<UASWeaponData> StartWeaponRef1(TEXT("/Script/ASPrototype.ASWeaponData'/Game/ASPrototype/Weapon/AssultRifle.AssultRifle'"));
 	if (StartWeaponRef1.Object)
 	{
 		Weapon1 = Cast<UASWeaponData>(StartWeaponRef1.Object);
 	}
-	//¹«±â2 ¼¼ÆÃ 
+	//ï¿½ï¿½ï¿½ï¿½2 ï¿½ï¿½ï¿½ï¿½ 
 	static ConstructorHelpers::FObjectFinder<UASWeaponData> StartWeaponRef2(TEXT("/Script/ASPrototype.ASWeaponData'/Game/ASPrototype/Weapon/Sniper.Sniper'"));
 	if (StartWeaponRef2.Object)
 	{
 		Weapon2 = Cast<UASWeaponData>(StartWeaponRef2.Object);
 	}
-=======
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 }
 
 void AASCharacterPlayer::Tick(float DeltaTime)
@@ -207,30 +204,30 @@ void AASCharacterPlayer::BeginPlay()
 		CurrentWeapon = CurWeapon;
 	}
 
-	//ÀÔ·Â ¸ÅÇÎ½Ã½ºÅÛÀ» ÄÁÆ®·Ñ°ú ¿¬°á 
+	//ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½Î½Ã½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Æ®ï¿½Ñ°ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	APlayerController* PlayerController = CastChecked<APlayerController>(GetController());
 	UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer());
 	if (nullptr != Subsystem)
 	{
 		Subsystem->AddMappingContext(DefaultMappingContext, 0);
-		//Subsystem->RemoveMappingContext(DefaultMappingContext); ÇÊ¿ä ½Ã ¿¬°á ²÷±âµµ °¡´É 
+		//Subsystem->RemoveMappingContext(DefaultMappingContext); ï¿½Ê¿ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½âµµ ï¿½ï¿½ï¿½ï¿½ 
 	}
 	UE_LOG(LogTemp, Warning, TEXT("GetController"));
 	playerController = CastChecked<AASPlayerController>(GetController());
-	// SoundRangeCapsuleÀÇ ¸ÓÆ¼¸®¾óÀ» °¡Á®¿È
+	// SoundRangeCapsuleï¿½ï¿½ ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	UMaterialInterface* Material = SoundRangeCapsule->GetMaterial(0);
 
-	// ¸ÓÆ¼¸®¾óÀÌ À¯È¿ÇÑÁö È®ÀÎ ÈÄ »ö»ó º¯°æ
+	// ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È¿ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (Material)
 	{
-		// »ö»óÀ» »¡°£»öÀ¸·Î ¼³Á¤
+		// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		FLinearColor NewColor = FLinearColor::Red;
 
-		// ¸ÓÆ¼¸®¾ó ÀÎ½ºÅÏ½º »ý¼º ¹× ¼Ó¼º ¼³Á¤
+		// ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½Ï½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ó¼ï¿½ ï¿½ï¿½ï¿½ï¿½
 		UMaterialInstanceDynamic* DynamicMaterial = UMaterialInstanceDynamic::Create(Material, this);
 		DynamicMaterial->SetVectorParameterValue(TEXT("Color"), NewColor);
 	
-		// ¸ÓÆ¼¸®¾ó Àû¿ë
+		// ï¿½ï¿½Æ¼ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		SoundRangeCapsule->SetMaterial(0, DynamicMaterial);
 	}
 }
@@ -257,17 +254,13 @@ void AASCharacterPlayer::SetupPlayerInputComponent(UInputComponent* PlayerInputC
 	PlayerInputComponent->BindAction(TEXT("GetDamage"), EInputEvent::IE_Pressed, this, &AASCharacterBase::TestingGetDamage);
 	PlayerInputComponent->BindAction(TEXT("GetItem"), EInputEvent::IE_Pressed, this, &AASCharacterPlayer::GripItem);
 
-<<<<<<< HEAD
 	PlayerInputComponent->BindAction(TEXT("GetWeapon1"), EInputEvent::IE_Pressed, this, &AASCharacterPlayer::ChangeWeapon1);
 	PlayerInputComponent->BindAction(TEXT("GetWeapon2"), EInputEvent::IE_Pressed, this, &AASCharacterPlayer::ChangeWeapon2);
 	//PlayerInputComponent->BindAction(TEXT("GetWeapon2"), EInputEvent::IE_Pressed, this, &AASCharacterPlayer::ChangeWeapon(1));
-=======
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
-
-	//Çâ»óµÈ ÀÔ·Â ½Ã½ºÅÛ »ç¿ë
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Ô·ï¿½ ï¿½Ã½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 	UEnhancedInputComponent* EnhancedInputComponent = CastChecked<UEnhancedInputComponent>(PlayerInputComponent);
-	//ÀÔ·Â ¸ÊÇÎÄÁÅØ½ºÆ®¿¡¼­ÀÇ ¾×¼ÇÀÌ¶û ÇÔ¼ö¶û ¿¬°á
+	//ï¿½Ô·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ø½ï¿½Æ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×¼ï¿½ï¿½Ì¶ï¿½ ï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ACharacter::Jump);
 	EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ACharacter::StopJumping);
 	EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &AASCharacterPlayer::Move);
@@ -334,7 +327,6 @@ void AASCharacterPlayer::AttackCheck()
 {
 	
 	FHitResult OutHit;
-<<<<<<< HEAD
 
 	FVector Location;
 	FRotator Rotation;
@@ -351,23 +343,13 @@ void AASCharacterPlayer::AttackCheck()
 	//UE_LOG(LogTemp, Error, TEXT("StartVector is %s"), *CurrentWeapon->GetActorForwardVector().ToString());
 	//FVector End = ((GetActorForwardVector() * 1000.0f) + Start);
 
-=======
-	//FVector Start = CurrentWeapon->GetActorForwardVector();
-	FVector Start = GetActorLocation();
-	//UE_LOG(LogTemp, Log, TEXT("Character Location :: %s"), CurrentWeapon->GetActorForwardVector().ToString());
-	UE_LOG(LogTemp, Error, TEXT("StartVector is %s"), *CurrentWeapon->GetActorForwardVector().ToString());
-	FVector End = ((GetActorForwardVector() * 1000.0f) + Start);
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	FCollisionQueryParams CollisionParams(NAME_None,false,this);
 	//FCollisionQueryParams CollisionParams;
 
 	DrawDebugLine(GetWorld(), Start, End, FColor::Green, true);
 
 	bool isHit = (GetWorld()->LineTraceSingleByChannel(OutHit, Start, End, ECC_Visibility, CollisionParams));
-<<<<<<< HEAD
 	//bool isHit = (GetWorld()->LineTraceSingleByChannel(OutHit, Start, End, ECC_PhysicsBody, CollisionParams));
-=======
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 	if (isHit)
 	{
@@ -380,7 +362,6 @@ void AASCharacterPlayer::AttackCheck()
 		TSubclassOf<UDamageType> DamageType= UDamageType::StaticClass();
 		FPointDamageEvent PointDamageEvent(float(GetStrength()), OutHit, ShotDirection, DamageType);
 		PointDamageEvent.HitInfo = OutHit;
-<<<<<<< HEAD
 		UE_LOG(AS, Warning, TEXT("BoneName: %s"), *OutHit.BoneName.ToString());
 		if (OutHit.BoneName == "head")
 		{
@@ -389,9 +370,6 @@ void AASCharacterPlayer::AttackCheck()
 		else {
 			OutHit.GetActor()->TakeDamage(GetStrength(), PointDamageEvent, GetController(), this);
 		}
-=======
-		OutHit.GetActor()->TakeDamage(GetStrength(), PointDamageEvent, GetController(), this);
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	}
 }
 
@@ -445,7 +423,7 @@ void AASCharacterPlayer::MakeItemTrace()
 
 void AASCharacterPlayer::GripItem()
 {
-	// ÇÃ·¹ÀÌ¾î Ä³¸¯ÅÍ°¡ E Å°¸¦ ´©¸£¸é ÇöÀç À§Ä¡ÀÇ ¾ÆÀÌÅÛÀ» °Ë»çÇÏ¿© bCanGripÀÌ trueÀÎ ¾ÆÀÌÅÛÀÇ Á¤º¸¸¦ °¡Á®¿È
+	// ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ Ä³ï¿½ï¿½ï¿½Í°ï¿½ E Å°ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë»ï¿½ï¿½Ï¿ï¿½ bCanGripï¿½ï¿½ trueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	TArray<AActor*> OverlappingActors;
 	GetOverlappingActors(OverlappingActors, AASItemBox::StaticClass());
 
@@ -456,7 +434,7 @@ void AASCharacterPlayer::GripItem()
 		{
 			FString ItemName = Item->GetItemName();
 
-			// TCHAR ¹è¿­·Î º¯È¯
+			// TCHAR ï¿½è¿­ï¿½ï¿½ ï¿½ï¿½È¯
 			const TCHAR* ItemNamePtr = *ItemName;
 
 			UE_LOG(AS, Warning, TEXT("Gripped Item: %s, Count: %d"), ItemNamePtr, Item->GetItemCount());
@@ -466,7 +444,7 @@ void AASCharacterPlayer::GripItem()
 				SetBulletNum(GetBulletNum() + Item->GetItemCount());
 				//NumBulletChanged.Broadcast();
 			}
-			// ºØ´ë ¾ÆÀÌÅÛÀ» Àâ¾ÒÀ» ¶§
+			// ï¿½Ø´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½
 			else if (ItemName == "Bandage")
 			{
 				SetItemNum(GetItemNum() + Item->GetItemCount());
@@ -474,7 +452,7 @@ void AASCharacterPlayer::GripItem()
 			//FItemData ItemData;
 			//if (AASItemBox::GetItemData(Item->GetName(), ItemData))
 			//{
-			//	// ¾ÆÀÌÅÛÀÇ Á¤º¸¸¦ Ãâ·ÂÇÏ°Å³ª »ç¿ëÇÏ´Â ·ÎÁ÷À» ¿©±â¿¡ Ãß°¡
+			//	// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï°Å³ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¿¡ ï¿½ß°ï¿½
 			//	UE_LOG(LogTemp, Warning, TEXT("Gripped Item: %s, Count: %d"), *Item->GetName(), Item->GetItemCount());
 			//}
 		}
@@ -488,7 +466,6 @@ float AASCharacterPlayer::TakeDamage(float DamageAmount, FDamageEvent const& Dam
 	return FinalDamage;
 }
 
-<<<<<<< HEAD
 void AASCharacterPlayer::ChangeWeapon(int weaponindex)
 {
 	switch (weaponindex)
@@ -521,9 +498,7 @@ void AASCharacterPlayer::ChangeWeaponMesh(UASWeaponData* NewWeaponData)
 	}
 }
 
-=======
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
-//¿òÁ÷ÀÓ ±¸Çö
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 void AASCharacterPlayer::Move(const FInputActionValue& Value) 
 {
 	FVector2D MovementVector = Value.Get<FVector2D>();
@@ -565,7 +540,7 @@ void AASCharacterPlayer::Wear(const FInputActionValue& Value)
 	AnimInstance->Montage_Play(SearchMontage);
 
 	static const FString OutfitPath = TEXT("/Game/ASPrototype/Mesh/AS_Pullover.AS_Pullover");
-	// Soft Object Reference¸¦ »ç¿ëÇÏ¿© ¿Ê ·Îµå
+	// Soft Object Referenceï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½ï¿½ ï¿½Îµï¿½
 	static TSoftObjectPtr<USkeletalMesh> NewClothesRef(OutfitPath);
 	USkeletalMesh* NewClothesMesh = NewClothesRef.LoadSynchronous();
 
@@ -585,19 +560,19 @@ void AASCharacterPlayer::Wear(const FInputActionValue& Value)
 
 void AASCharacterPlayer::UpdateSoundRange()
 {	
-	// ÇöÀç Å©±â
+	// ï¿½ï¿½ï¿½ï¿½ Å©ï¿½ï¿½
 	float Radius, Height;
 	SoundRangeCapsule->GetScaledCapsuleSize(Radius, Height);
 	FVector CurrentSize = FVector(Radius, Radius, Height);
 
 	float SpeedMultiplier = CurrentSpeed > 0 ? ((GetCharacterMovement()->MaxWalkSpeed>500) ? RunSoundMultiplier : WalkSoundMultiplier) : 0.0f;
 	float NewSoundRange = MinSoundRange + (MaxSoundRange - MinSoundRange) * SpeedMultiplier;
-	FVector TargetSize = FVector(NewSoundRange, NewSoundRange, Height); // ³ôÀÌ´Â °íÁ¤°ªÀ¸·Î À¯Áö
+	FVector TargetSize = FVector(NewSoundRange, NewSoundRange, Height); // ï¿½ï¿½ï¿½Ì´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	
-	// ¼±Çü º¸°£À¸·Î »çÀÌÁî ºÎµå·´°Ô Á¶Àý  _
+	// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµå·´ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  _
 	FVector LerpedSize = FMath::Lerp(CurrentSize, TargetSize, GetWorld()->DeltaTimeSeconds * 1.0);
 
-	// Å©±â ¼³Á¤
+	// Å©ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	SoundRangeCapsule->SetCapsuleSize(LerpedSize.X, LerpedSize.Y);
 	
 }

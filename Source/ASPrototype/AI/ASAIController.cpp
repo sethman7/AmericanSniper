@@ -9,33 +9,29 @@
 #include "ASAI.h"
 #include "Sound_tags.h"
 
-//Å½Áö ±â´É
+//Å½ï¿½ï¿½ ï¿½ï¿½ï¿½
 #include "Perception/AIPerceptionComponent.h"
-#include "Perception/AISenseConfig_Sight.h" //½Ã¾ß
-#include "Perception/AISenseConfig_Hearing.h" //»ç¿îµå
-<<<<<<< HEAD
-#include "Perception/AISense_Touch.h"//°¨°¢
-=======
-#include "Perception/AISenseConfig_Touch.h"//°¨°¢
+#include "Perception/AISenseConfig_Sight.h" //ï¿½Ã¾ï¿½
+#include "Perception/AISenseConfig_Hearing.h" //ï¿½ï¿½ï¿½ï¿½
+#include "Perception/AISenseConfig_Touch.h"//ï¿½ï¿½ï¿½ï¿½
 #include "Perception/AISense_Touch.h"
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 #include "Enemy/ASEnemyCharacter.h"
 #include "Character/ASCharacterPlayer.h" //SetAngle 
 
 #include "Kismet/KismetMathLibrary.h" //charactor moving
 
-//Å½Áö À§Á¬ Ãß°¡
+//Å½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 #include "Components/WidgetComponent.h"
 #include "UI/ASDetectWidget.h"
 
-//°ø½Ä ÀÌ¿ë
+//ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¿ï¿½
 #include "Kismet/GameplayStatics.h"
 
-//³×ºñ°ÔÀÌ¼Ç
+//ï¿½×ºï¿½ï¿½ï¿½Ì¼ï¿½
 #include "NavigationSystem.h"
 
-//ÃÖÁ¾ Å¸°Ù
+//ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 #include "Enemy/ASFinalTarget.h"
 
 AASAIController::AASAIController()
@@ -80,7 +76,7 @@ AASAIController::AASAIController()
 	DetectValue =0;
 	MaxValue =100;
 	CurSituation = CurDetectSituation::NoneInRange;
-	Alertlvl = AlertLvl::None; //ÀÇ½É¼öÁØ
+	Alertlvl = AlertLvl::None; //ï¿½Ç½É¼ï¿½ï¿½ï¿½
 }
 
 
@@ -95,7 +91,7 @@ void AASAIController::BeginPlay()
 	EnemyRef = Cast<AASEnemyCharacter>(GetPawn());
 	ensure(EnemyRef);
 
-	//´Ù¸¥ Å¬·¡½º¿¡¼­ ÄÉ¸¯ÅÍ °´Ã¼´Â Àß ¹Þ¾Æ¿ÀÁö¸¸, GetMesh() È£Ãâ ½Ã interface collision dataprovider¿¡¼­  ¿¡·¯ ¹ß»ý. 
+	//ï¿½Ù¸ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½É¸ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½ï¿½ ï¿½Þ¾Æ¿ï¿½ï¿½ï¿½ï¿½ï¿½, GetMesh() È£ï¿½ï¿½ ï¿½ï¿½ interface collision dataproviderï¿½ï¿½ï¿½ï¿½  ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½. 
 	//USkeletalMeshComponent* mesh = EnemyRef->GetMesh();
 	//QuestionMark->SetupAttachment(mesh);
 
@@ -105,7 +101,7 @@ void AASAIController::BeginPlay()
 }
 void AASAIController::OnPossess(APawn* InPawn)
 {
-	Super::OnPossess(InPawn); //ºùÀÇ ½ÃÀÛ  , ¿¡³Ê¹ÌÀÇ ¼ÒÀ¯±ÇÀº AIController°¡ ¾ò°Ô µÊ
+	Super::OnPossess(InPawn); //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½  , ï¿½ï¿½ï¿½Ê¹ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ AIControllerï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½
 	IsTarget = CheckisFinalTarget(InPawn);
 	RunAI();
 }
@@ -133,7 +129,7 @@ void AASAIController::StopAI()
 }
 
 
-//UI ¼öÄ¡
+//UI ï¿½ï¿½Ä¡
 void AASAIController::IncreaseDetectValue()
 {
 	if (GetBB_IsDetect())
@@ -166,7 +162,7 @@ void AASAIController::DecreaseDetectValue()
 	UiRef->SetPercent(DetectValue/100.0f);
 }
 
-//AI °ü·Ã 
+//AI ï¿½ï¿½ï¿½ï¿½ 
 void AASAIController::SetupPerception()
 {
 	AIPerComp = CreateDefaultSubobject<UAIPerceptionComponent>(TEXT("AI Perception Component"));
@@ -195,8 +191,6 @@ void AASAIController::SetupPerception()
 		AIPerComp->ConfigureSense(*HearingConfig);
 		AIPerComp->SetDominantSense(HearingConfig->GetSenseImplementation());
 	}
-<<<<<<< HEAD
-=======
 
 	TouchConfig = CreateDefaultSubobject<UAISenseConfig_Touch>(TEXT("Touch Config"));
 	if (TouchConfig)
@@ -206,7 +200,6 @@ void AASAIController::SetupPerception()
 	}
 
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	AIPerComp->OnTargetPerceptionUpdated.AddDynamic(this, &AASAIController::On_Updated);
 
 }
@@ -216,66 +209,59 @@ void AASAIController::On_Updated(AActor* DetectedPawn, const  FAIStimulus Stimul
 
 	auto SensedClass = UAIPerceptionSystem::GetSenseClassForStimulus(this, Stimulus);
 
-	//½Ã¾ß ½Äº°ÀÎ °æ¿ì 
+	//ï¿½Ã¾ï¿½ ï¿½Äºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 	if (SensedClass== UAISense_Sight::StaticClass())
 	{
-<<<<<<< HEAD
-		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Sight Sense")));
-=======
 		//GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Sight Sense")));
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 		AASCharacterPlayer* CurPlayer = Cast<AASCharacterPlayer>(DetectedPawn);
 		CheckPlayer(CurPlayer);
 	}
-	//»ç¿îµå ½Äº°ÀÎ °æ¿ì 
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 	else if (SensedClass == UAISense_Hearing::StaticClass() )
 	{
 		EventBySound = true;
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Hearing Sense")));
-		if (Stimulus.Tag == tags::lvl1_Sound_tag) // ¾î±×·Î(ex, ÁÖº¯ ¶óµð¿À)  + ¾î±×·Î´Â ÃÖ´ë 1¸í¸¸ ²ø±â 
+		if (Stimulus.Tag == tags::lvl1_Sound_tag) // ï¿½ï¿½×·ï¿½(ex, ï¿½Öºï¿½ ï¿½ï¿½ï¿½ï¿½)  + ï¿½ï¿½×·Î´ï¿½ ï¿½Ö´ï¿½ 1ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		{
 			SetAlertLvl(AlertLvl::Low);
 		}
-		else if (Stimulus.Tag == tags::lvl2_Sound_tag) //PlayerÃÑ±â ¼Ò¸® -> ÀÇ½É»óÅÂ(Medium) + ¾î±×·Î´Â Á¦ÇÑ ¾øÀ½
+		else if (Stimulus.Tag == tags::lvl2_Sound_tag) //Playerï¿½Ñ±ï¿½ ï¿½Ò¸ï¿½ -> ï¿½Ç½É»ï¿½ï¿½ï¿½(Medium) + ï¿½ï¿½×·Î´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		{
 			SetAlertLvl(AlertLvl::Medium);
-			//·Î¹Ö 
+			//ï¿½Î¹ï¿½ 
 		}
-		else if (Stimulus.Tag == tags::lvl3_Sound_tag) //EnemyÃÑ±â ¼Ò¸® -> ÀÇ½É»óÅÂ(High)    
+		else if (Stimulus.Tag == tags::lvl3_Sound_tag) //Enemyï¿½Ñ±ï¿½ ï¿½Ò¸ï¿½ -> ï¿½Ç½É»ï¿½ï¿½ï¿½(High)    
 		{
 			SetAlertLvl(AlertLvl::High);
-			//300m¹Ý°æ¿¡ ÀÖ´Â ±ÙÃ³ Àûµé ÃÖ´ë 3¸í¿¡°Ô »ç¿îµåÀ§Ä¡ Àü¼Û ÈÄ, ÀÇ½É»óÅÂ(Medium)·Î ¸¸µë 
+			//300mï¿½Ý°æ¿¡ ï¿½Ö´ï¿½ ï¿½ï¿½Ã³ ï¿½ï¿½ï¿½ï¿½ ï¿½Ö´ï¿½ 3ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½, ï¿½Ç½É»ï¿½ï¿½ï¿½(Medium)ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 		}
 		LastKnownPosition = Stimulus.StimulusLocation;
 		CurSituation = CurDetectSituation::TargetIsSuspected;
 	}
-	//°¨°¢ ½Äº°ÀÎ °æ¿ì 
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½Äºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ 
 	else if (SensedClass == UAISense_Touch::StaticClass())
 	{
 		GEngine->AddOnScreenDebugMessage(-1, 5.0f, FColor::Green, FString::Printf(TEXT("Touch Sense"))); 
-<<<<<<< HEAD
-=======
 		SetBB_IsDetect(true);
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
-		//ÅÍÄ¡µÈ »ó´ë°¡ Player Ä³½ºÆÃ ¼º°ø ÇÑ °æ¿ì, ¹Ù·Î Player¿¡°Ô Focus OnÀÌ µÊ. ( UI¹Ù »ó½Â ½ºÇÇµå 2¹è UP )
-		//Ä³½ºÆÃ µÈ °ÍÀÌ ÃÑ¾ËÀÌ¸é IsDetect==true
+		//ï¿½ï¿½Ä¡ï¿½ï¿½ ï¿½ï¿½ë°¡ Player Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½Ù·ï¿½ Playerï¿½ï¿½ï¿½ï¿½ Focus Onï¿½ï¿½ ï¿½ï¿½. ( UIï¿½ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Çµï¿½ 2ï¿½ï¿½ UP )
+		//Ä³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ¾ï¿½ï¿½Ì¸ï¿½ IsDetect==true
 	}
 }
 
-//Å½Áö »óÅÂ °ü·Ã 
+//Å½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 void AASAIController::CheckPlayer(AActor* player)
 {	
-	//ÀÓ½Ã : ¿ÀÁ÷ ÇÃ·¹ÀÌ¾î¸¸ ÀÎ½Ä (Àû³¢¸® ÀÎ½ÄX)
+	//ï¿½Ó½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾î¸¸ ï¿½Î½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½X)
 	if (player==NULL){ return; }
 	if (GetBB_Target())
 	{
-		SetBB_Target(nullptr); //³ª°¡¾ß ÇÏ´Â »óÈ² 
+		SetBB_Target(nullptr); //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È² 
 		StopDetection();
 	}
 	else
 	{
-		SetBB_Target(player); //µé¾î°¡¾ß ÇÏ´Â »óÈ²
+		SetBB_Target(player); //ï¿½ï¿½î°¡ï¿½ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½È²
 		StartDetection();
 	}
 
@@ -287,7 +273,7 @@ void AASAIController::StartDetection()
 }
 void AASAIController::StopDetection()
 {	
-	if (GetBB_IsDetect() == false) //½Äº° ¾ÈµÈ »óÅÂ¿¡¼­¸¸  
+	if (GetBB_IsDetect() == false) //ï¿½Äºï¿½ ï¿½Èµï¿½ ï¿½ï¿½ï¿½Â¿ï¿½ï¿½ï¿½ï¿½ï¿½  
 	{
 		CurSituation = CurDetectSituation::TargetGetOutOfRange;
 	}
@@ -308,10 +294,6 @@ void AASAIController::Tick(float DeltaTime)
 		StopAI();
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	if (CurSituation !=CurDetectSituation::NoneInRange)  
 	{
 		//Calculate Angle Value for UI Rotation
@@ -367,10 +349,10 @@ void AASAIController::Tick(float DeltaTime)
 
 }
 
-//À§Ä¡ °ü·Ã
+//ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ï¿½
 void AASAIController::FindNearLocation(FVector Loc, float Range)
 {
-	//LastKnownPosition ±âÁØÀ¸·Î ·£´ý À§Ä¡ ¾ò±â 
+	//LastKnownPosition ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ä¡ ï¿½ï¿½ï¿½ 
 	UNavigationSystemV1* NavSystem = UNavigationSystemV1::GetNavigationSystem(EnemyRef->GetWorld());
 	FNavLocation NextPosition;
 	if (NavSystem->GetRandomPointInNavigableRadius(Loc, Range, NextPosition))
@@ -380,7 +362,7 @@ void AASAIController::FindNearLocation(FVector Loc, float Range)
 }
 
 
-//BB µ¥ÀÌÅÍ Á¢±Ù 
+//BB ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 void AASAIController::SetBB_Target(UObject* actor)
 {
 	GetBlackboardComponent()->SetValueAsObject(BBKEY_TARGET, actor);
@@ -435,8 +417,6 @@ FVector AASAIController::GetBB_AttackRange()
 	return GetBlackboardComponent()->GetValueAsVector(BBKEY_AttackRange);
 }
 
-<<<<<<< HEAD
-=======
 void AASAIController::SetBB_CanVariousActions(bool b)
 {
 	GetBlackboardComponent()->SetValueAsBool(BBKEY_CanVariousActions, b);
@@ -458,7 +438,6 @@ bool AASAIController::GetBB_IsAttack()
 	return  GetBlackboardComponent()->GetValueAsBool(BBKEY_IsAttack);
 }
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 void AASAIController::SetBB_EnableRoaming(bool b)
 {
 	GetBlackboardComponent()->SetValueAsBool(BBKEY_EnableRoaming, b);
@@ -487,11 +466,8 @@ FVector AASAIController::GetBB_LastKnownPosition()
 }
 
 
-<<<<<<< HEAD
-=======
 
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 //GetSet
 UASDetectWidget* AASAIController::getWidget()
 {
@@ -511,8 +487,6 @@ AActor* AASAIController::GetPlayer()
 	return Actor;
 }
 
-<<<<<<< HEAD
-=======
 bool AASAIController::IsPlayer(AActor* actor)
 {
 	AASCharacterPlayer* player = Cast<AASCharacterPlayer>(actor);
@@ -522,7 +496,6 @@ bool AASAIController::IsPlayer(AActor* actor)
 	}
 	return false;
 }
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 //Setting RangeSize 
 void AASAIController::RangeSizeDown()
@@ -575,13 +548,13 @@ void AASAIController::RangeSizeUP()
 
 
 
-//»ý¼ºÀÚ¿¡¼­¸¸ Casting ¾ÈµÊ 
+//ï¿½ï¿½ï¿½ï¿½ï¿½Ú¿ï¿½ï¿½ï¿½ï¿½ï¿½ Casting ï¿½Èµï¿½ 
 //TSubclassOf<UUserWidget> WidgetObject = DetectBar->GetWidgetClass();
 //UASDetectWidget* uiRef = Cast<UASDetectWidget>(WidgetObject);
 //ensure(UiRef);
 //UiRef->SetOwner(this);
 
-//ID ¼¼ÆÃ 
+//ID ï¿½ï¿½ï¿½ï¿½ 
 //AASEnemyBase* EnemyRef = Cast<AASEnemyBase>(GetPawn());
 //if (EnemyRef)
 //{
@@ -594,7 +567,7 @@ void AASAIController::RangeSizeUP()
 //	return ETeamAttitude::Type();
 //}
 //GEngine->AddOnScreenDebugMessage(-1, 2.0f, FColor::Blue, FString::Printf(TEXT("DetectionLevel : %f"), DetectionLevel));
-//Àû°ú ÇÃ·¹ÀÌ¾î »çÀÌ °Å¸® ¾ò±â
+//ï¿½ï¿½ï¿½ï¿½ ï¿½Ã·ï¿½ï¿½Ì¾ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½ ï¿½ï¿½ï¿½
 //FVector Location_Between_Player_And_Enemy = EnemyLoc - PlayerLoc;
 //DistanceDifference_Value = Location_Between_Player_And_Enemy.Length();
 //void AASAIController::On_Updated(TArray<AActor*> const& updated_Actors)
@@ -608,13 +581,13 @@ void AASAIController::RangeSizeUP()
 //		for (size_t k = 0; k < info.LastSensedStimuli.Num(); k++)
 //		{
 //			FAIStimulus const stim = info.LastSensedStimuli[k];
-//			if (stim.Tag==tags::lvl1_Sound_tag) //ÀÛÀº ¼Ò¸®´Â ÀÇ½É»óÅÂ 
+//			if (stim.Tag==tags::lvl1_Sound_tag) //ï¿½ï¿½ï¿½ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½Ç½É»ï¿½ï¿½ï¿½ 
 //			{
 //				EventOnBySound = true;
 //				SetBB_IsAlert(true);
 //				SetBB_LastKnownPosition(stim.StimulusLocation);
 //			}
-//			else if (stim.Tag == tags::lvl2_Sound_tag) //Å« ¼Ò¸®´Â °ø°Ý»óÅÂ 
+//			else if (stim.Tag == tags::lvl2_Sound_tag) //Å« ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ 
 //			{
 //				EventOnBySound = true;
 //				SetBB_IsDetect(true);
@@ -629,7 +602,7 @@ void AASAIController::RangeSizeUP()
 //		}
 //	}
 //}
-//void AASAIController::OnPawnDetected(const TArray<AActor*>& DetectedPawns) //Àû µÑÀÌ ¸¶ÁÖº¸¸é ¹®Á¦ ¹ß»ý 
+//void AASAIController::OnPawnDetected(const TArray<AActor*>& DetectedPawns) //ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Öºï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ß»ï¿½ 
 //{	
 //	for (int32 i = 0; i < DetectedPawns.Num(); ++i)
 //	{

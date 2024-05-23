@@ -6,9 +6,9 @@
 #include "GameFramework/Character.h"
 #include "Tool/ASWeaponData.h"
 #include "Tool/ASWeaponItem.h"
-//ÀÌµ¿ ÁöÁ¡ ¼³Á¤
+//ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 //#include "Enemy/PatrolPath.h"
-//°¢ ¿¡³Ê¹ÌµéÀ» ÆÇº°ÇÏ±â À§ÇØ ID°ªÀ» ³Ö¾îÁÜ
+//ï¿½ï¿½ ï¿½ï¿½ï¿½Ê¹Ìµï¿½ï¿½ï¿½ ï¿½Çºï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ IDï¿½ï¿½ï¿½ï¿½ ï¿½Ö¾ï¿½ï¿½ï¿½
 //#include "GenericTeamAgentInterface.h"
 
 #include "ASEnemyBase.generated.h"
@@ -17,12 +17,12 @@ UENUM()
 enum class EState
 {
 	Idle, 
-	Alert, //ÀÇ½É »óÅÂ
-	Chasing, //ÂÑ´Â »óÅÂ
-	Attack, //°ø°Ý»óÅÂ 
-	Hurt,  //Àý¶Ò°Å¸®±â
-	Hidden, //¼ûÀº »óÅÂ
-	Dead //»ç¸Á
+	Alert, //ï¿½Ç½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	Chasing, //ï¿½Ñ´ï¿½ ï¿½ï¿½ï¿½ï¿½
+	Attack, //ï¿½ï¿½ï¿½Ý»ï¿½ï¿½ï¿½ 
+	Hurt,  //ï¿½ï¿½ï¿½Ò°Å¸ï¿½ï¿½ï¿½
+	Hidden, //ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+	Dead //ï¿½ï¿½ï¿½
 }; 
 
 DECLARE_MULTICAST_DELEGATE(FOnAttackEndDelegate);
@@ -43,15 +43,10 @@ public:
 
 	uint32 GetHp();
 	void SetHp(uint32 Hp);
-<<<<<<< HEAD
-	void Dead();
-
-=======
 	virtual void SetDead();
 	void RandomActions();
 	UFUNCTION()
 	void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComponent, FVector NormalImpulse, const FHitResult& Hit);
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 private:
 	uint32 MaxHp;
 	uint32 CurHp;
@@ -69,7 +64,7 @@ public:
 	virtual void OnConstruction(const FTransform& Transform) override;
 	void SetStateAnimation(EState NewState);
 
-	//TArray<FVector> °ªÀ» °¡Áø Actor Å¬·¡½º Æ÷ÀÎÅÍ 
+	//TArray<FVector> ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Actor Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 
 	UPROPERTY(EditAnywhere)
 	TObjectPtr<class APatrolPath> PatrolPath;
 	
@@ -85,16 +80,13 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animation)
 	TObjectPtr<class UAnimMontage> AttackMontage;
 
-<<<<<<< HEAD
-=======
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Animation)
 	TObjectPtr<class UAnimMontage> ReloadMontage;
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 
 
-	//¹«±â ¼¼ÆÃ
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Weapon)
 	TObjectPtr<class USkeletalMeshComponent> WeaponMesh;
 	TObjectPtr<class UASWeaponData> Weapon1;
@@ -116,7 +108,7 @@ public:
 	//UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = AI)
 	//int32 ID = 0;
 
-	//¿¡³Ê¹Ì°¡ Àû´ëÀûÀÎ Á¸ÀçÀÎÁö ¾Æ´ÑÁö ÆÇ´ÜÇÏ±â À§ÇØ ³ÖÀ½
+	//ï¿½ï¿½ï¿½Ê¹Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	//virtual FGenericTeamId GetGenericTeamId() const override { return TeamId; }
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Widget)
 	TObjectPtr<class UWidgetComponent> QuestionMark;
@@ -130,7 +122,7 @@ protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
 
-	//¿¡³Ê¹Ì°¡ Àû´ëÀûÀÎ Á¸ÀçÀÎÁö ¾Æ´ÑÁö ÆÇ´ÜÇÏ±â À§ÇØ ³ÖÀ½ 
+	//ï¿½ï¿½ï¿½Ê¹Ì°ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Æ´ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ï¿½Ï±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	//FGenericTeamId TeamId;
 
 	void SetState(EState NewState);

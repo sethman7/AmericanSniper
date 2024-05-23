@@ -11,20 +11,20 @@ UENUM()
 enum class CurDetectSituation
 {
 
-	NoneInRange, //¹üÀ§¾È¿¡ ¾ø´Â »óÈ²
-	TargetInRange, // ¹üÀ§¾È¿¡ ÀÖ´Â »óÈ²
-	TargetGetOutOfRange, // ¹üÀ§¾È¿¡ µé¾î°¬´Ù ³ª°£ »óÈ²
-	TargetIsSuspected, //ÀÇ½É ¹Þ´Â »óÈ²
-	TargetIsDetected,  // ¹ß°¢µÈ »óÈ²
+	NoneInRange, //ï¿½ï¿½ï¿½ï¿½ï¿½È¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²
+	TargetInRange, // ï¿½ï¿½ï¿½ï¿½ï¿½È¿ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½È²
+	TargetGetOutOfRange, // ï¿½ï¿½ï¿½ï¿½ï¿½È¿ï¿½ ï¿½ï¿½î°¬ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½È²
+	TargetIsSuspected, //ï¿½Ç½ï¿½ ï¿½Þ´ï¿½ ï¿½ï¿½È²
+	TargetIsDetected,  // ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½È²
 	
 };
 
 enum class AlertLvl
 {
 	None,
-	Low, // ±âº» ÀÇ½É»óÅÂ , ¾î±×·Î 
-	Medium, // ÁÖº¯ ÃÑ±â »ç¿îµå ÀÎ½ÄÇÒ °æ¿ì ( ÁÖº¯ ·Î¹Ö )
-	High, //  ½ÃÃ¼ ¹ß°ßÇÑ °æ¿ì , ÀûÀÇ ÃÑ±â ¼Ò¸®¸¦ µéÀ» °æ¿ì ( ÁÖº¯ Àûµé¿¡°Ô ¿¬¶ô ÈÄ ·Î¹Ö, ¿¬¶ô ¹ÞÀº Àûµéµµ ·Î¹Ö )
+	Low, // ï¿½âº» ï¿½Ç½É»ï¿½ï¿½ï¿½ , ï¿½ï¿½×·ï¿½ 
+	Medium, // ï¿½Öºï¿½ ï¿½Ñ±ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Î½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ( ï¿½Öºï¿½ ï¿½Î¹ï¿½ )
+	High, //  ï¿½ï¿½Ã¼ ï¿½ß°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ , ï¿½ï¿½ï¿½ï¿½ ï¿½Ñ±ï¿½ ï¿½Ò¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ ( ï¿½Öºï¿½ ï¿½ï¿½ï¿½é¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Î¹ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½éµµ ï¿½Î¹ï¿½ )
 };
 
 
@@ -47,7 +47,7 @@ public:
 	void IncreaseDetectValue();
 	void DecreaseDetectValue();
 
-	//AI °ü·Ã
+	//AI ï¿½ï¿½ï¿½ï¿½
 	UFUNCTION()
 	void On_Updated(AActor* DetectedPawn, const  FAIStimulus Stimulus);
 	UFUNCTION()
@@ -59,15 +59,12 @@ public:
 	//Get,Set
 	bool SetAlertLvl(AlertLvl NewLVl);
 	AActor* GetPlayer();
-<<<<<<< HEAD
-=======
 	bool IsPlayer(AActor* actor);
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	class UASDetectWidget* getWidget();
 	
 
 
-	//BB µ¥ÀÌÅÍ Á¤º¸ 
+	//BB ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ 
 	void SetBB_LastKnownPosition(FVector vector);
 	FVector GetBB_LastKnownPosition();
 
@@ -95,14 +92,11 @@ public:
 	void SetBB_AttackRange(FVector vector);
 	FVector GetBB_AttackRange();
 
-<<<<<<< HEAD
-=======
 	void SetBB_CanVariousActions(bool b);
 	bool GetBB_CanVariousActions();
 
 	void SetBB_IsAttack(bool b);
 	bool GetBB_IsAttack();
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 	//SetRangeSize
 	void RangeSizeDown();
@@ -134,11 +128,7 @@ private:
 	class UAIPerceptionComponent* AIPerComp;
 	class UAISenseConfig_Sight* SightConfig;
 	class UAISenseConfig_Hearing* HearingConfig;
-<<<<<<< HEAD
-
-=======
 	class UAISenseConfig_Touch* TouchConfig;
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 	//BB,BT 
 	UPROPERTY()
 	TObjectPtr<class UBlackboardData> BBAsset;
@@ -147,24 +137,24 @@ private:
 	UPROPERTY()
 	TObjectPtr<class UBehaviorTree> BT_FinalTargetAsset;
 
-	//Player, UI, enemy °´Ã¼ Ä³½ºÆÃ
+	//Player, UI, enemy ï¿½ï¿½Ã¼ Ä³ï¿½ï¿½ï¿½ï¿½
 	class AASCharacterPlayer* PlayerRef;
 	class UASDetectWidget* UiRef;
 	class AASEnemyCharacter* EnemyRef;
 
-	// Sight ÀÌº¥Æ® ¹ß»ý ½Ã È£Ãâ
+	// Sight ï¿½Ìºï¿½Æ® ï¿½ß»ï¿½ ï¿½ï¿½ È£ï¿½ï¿½
 	void StartDetection();
 	void StopDetection();
 
-	//Ã¼Å©ÇÔ¼ö
+	//Ã¼Å©ï¿½Ô¼ï¿½
 	bool CheckisFinalTarget(APawn* InPawn);
 
-	//Á¶°Çº¯¼ö
+	//ï¿½ï¿½ï¿½Çºï¿½ï¿½ï¿½
 	bool EventBySound;
 	bool IsTarget;
 
 protected:
 	//FGenericTeamId TeamId;
-	////°¢ ActorÀÇ id¸¦ ºñ±³ÇÏ¿©, ÇöÀç Actor°¡ ÀûÀÎÁö »ç¹°ÀÎÁö ÆÀÀÎÁö ¾Ë·ÁÁØ´Ù. 
+	////ï¿½ï¿½ Actorï¿½ï¿½ idï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½, ï¿½ï¿½ï¿½ï¿½ Actorï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ç¹°ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ë·ï¿½ï¿½Ø´ï¿½. 
 	//virtual ETeamAttitude::Type GetTeamAttitudeTowards(const AActor& Other) const override;
 };

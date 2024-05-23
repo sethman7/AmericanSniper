@@ -30,18 +30,12 @@ void UBTService_StateManager::TickNode(UBehaviorTreeComponent& OwnerComp, uint8*
 		Enemy->SetStateAnimation(EState::Chasing);
 		Enemy->QuestionMark->SetHiddenInGame(true);
 	}
-<<<<<<< HEAD
-	else 
-	{
-		Enemy->SetStateAnimation(EState::Idle);
-	}	
-=======
 	else
 	{
 		Enemy->SetStateAnimation(EState::Idle);
 	}
 
-	//ÀüÅõ µ¿ÀÛ½Ã ¿òÁ÷ÀÌ±â ±ÝÁö
+	//ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Û½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ì±ï¿½ ï¿½ï¿½ï¿½ï¿½
 	if (Enemy->CurState==EState::Attack)
 	{
 		AI->SetBB_IsAttack(true);
@@ -51,7 +45,6 @@ void UBTService_StateManager::TickNode(UBehaviorTreeComponent& OwnerComp, uint8*
 		AI->SetBB_IsAttack(false);
 	}
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 }
 
 

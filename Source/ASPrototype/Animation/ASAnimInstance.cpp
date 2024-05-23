@@ -43,7 +43,7 @@ void UASAnimInstance::SwitchSnipAnim()
 	else DoSniping = true;
 }
 
-//ÀÓ½Ã ÇÔ¼ö
+//ï¿½Ó½ï¿½ ï¿½Ô¼ï¿½
 //void UASAnimInstance::SetCurrentHp(int NewHp)
 //{
 //	Hp = NewHp;
@@ -89,11 +89,7 @@ void UASAnimInstance::NativeUpdateAnimation(float DeltaSeconds)
 
 			//LookAtYaw = FRotator::NormalizeAxis(ControlRotation.Yaw - ActorRotation.Yaw);
 			LookAtPitch = ControlRotation.Pitch - 280.0f;
-<<<<<<< HEAD
 			//UE_LOG(AS, Warning, TEXT("Pitch : %f"), ControlRotation.Pitch);
-=======
-			UE_LOG(AS, Warning, TEXT("Pitch : %f"), ControlRotation.Pitch);
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 		}
 	}

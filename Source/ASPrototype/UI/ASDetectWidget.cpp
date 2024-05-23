@@ -4,7 +4,7 @@
 #include "UI/ASDetectWidget.h"
 #include "Components/ProgressBar.h"
 #include "Math/UnrealMathUtility.h"
-//BBµ¥ÀÌÅÍ Á¢±Ù
+//BBï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 #include "AI/ASAIController.h"
 #include "Components/WidgetComponent.h"
 
@@ -54,14 +54,10 @@ void UASDetectWidget::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 	Super::NativeTick(MyGeometry, InDeltaTime);
 	//timeline.TickTimeline(InDeltaTime);
 
-<<<<<<< HEAD
-	if (Owner!=nullptr) //ÀÌ°÷¿¡ µé¾î¿Ô´Ù´Â °Ç AIÀÇ Beginplay()°¡ È£Ãâ‰çÀ½À» ÀÇ¹ÌÇÔ 
-=======
-	if (Owner!=nullptr) //ÀÌ°÷¿¡ µé¾î¿Ô´Ù´Â °Ç AIÀÇ Beginplay()°¡ È£Ãâ‰çÀ½À» ÀÇ¹ÌÇÔ  , ÀçÈ®ÀÎÇÊ¿ä
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
+	if (Owner!=nullptr) //ï¿½Ì°ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ô´Ù´ï¿½ ï¿½ï¿½ AIï¿½ï¿½ Beginplay()ï¿½ï¿½ È£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ç¹ï¿½ï¿½ï¿½  , ï¿½ï¿½È®ï¿½ï¿½ï¿½Ê¿ï¿½
 	{	
 		AiRef = Cast<AASAIController>(Owner);
-		//ensure(AiRef); //AI °´Ã¼ ¾ò±â ¼º°ø
+		//ensure(AiRef); //AI ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 		MaxPercent = AiRef->MaxValue;
 	}
 }

@@ -2,17 +2,12 @@
 
 
 #include "Enemy/ASFinalTarget.h"
-<<<<<<< HEAD
-=======
 #include "Game/ASGameMode.h"
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 
 AASFinalTarget::AASFinalTarget()
 {
 
 }
-<<<<<<< HEAD
-=======
 
 void AASFinalTarget::SetDead()
 {
@@ -22,5 +17,4 @@ void AASFinalTarget::SetDead()
 	CurGameMode->EscapeTimerStart();
 }
 
-//Àû »ç¸Á  -->  µ¨¸®°ÔÀÌÆ® È£Ãâ 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
+//ï¿½ï¿½ ï¿½ï¿½ï¿½  -->  ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® È£ï¿½ï¿½ 

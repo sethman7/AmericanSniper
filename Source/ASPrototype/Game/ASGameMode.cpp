@@ -5,20 +5,17 @@
 #include "Player/ASPlayerState.h"
 #include "Blueprint/UserWidget.h"
 
-<<<<<<< HEAD
-=======
-//¾×ÅÍ Ã£±â
+//ï¿½ï¿½ï¿½ï¿½ Ã£ï¿½ï¿½
 #include "Enemy/ASFinalTarget.h"
 #include "Character/ASCharacterPlayer.h"
 
-//Å¸ÀÌ¸Ó 
+//Å¸ï¿½Ì¸ï¿½ 
 #include "UI/ASCountDownWidget.h"
 
 #include "UI/ASCountDownWidget.h"
 #include "Components/EditableTextBox.h"
 #include "Blueprint/UserWidget.h"
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 DEFINE_LOG_CATEGORY(AS);
 
 AASGameMode::AASGameMode()
@@ -38,8 +35,6 @@ AASGameMode::AASGameMode()
 
 	PlayerStateClass = AASPlayerState::StaticClass();
 	//PlayerStateClass = PlayerStateClass;
-<<<<<<< HEAD
-=======
 
 
 	static ConstructorHelpers::FClassFinder<UUserWidget> CountDownWidgetRef(TEXT("/Script/UMGEditor.WidgetBlueprint'/Game/UI/WB_CountDown.WB_CountDown_C'"));
@@ -51,7 +46,6 @@ AASGameMode::AASGameMode()
 	ensure(CountDownWidgetClass);
 	IsEscape = false; 
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 }
 
 
@@ -81,8 +75,6 @@ void AASGameMode::PostLogin(APlayerController* NewPlayer)
 	ASPlayerState->initPlayerData();
 }
 
-<<<<<<< HEAD
-=======
 void AASGameMode::EscapeTimerStart()
 {
 	CountDownWidget->AddToViewport();
@@ -106,13 +98,10 @@ void AASGameMode::GameOver()
 }
 
 
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 void AASGameMode::BeginPlay()
 {
 	Super::BeginPlay();
 	ChangeMenuWidget(StartingWidgetClass);
-<<<<<<< HEAD
-=======
 
 	CountDownWidget= Cast<UASCountDownWidget>(CreateWidget(GetWorld(), CountDownWidgetClass));
 	ensure(CountDownWidget);
@@ -130,7 +119,6 @@ void AASGameMode::BeginPlay()
 void AASGameMode::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
 }
 
 

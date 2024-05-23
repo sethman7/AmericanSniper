@@ -1,4 +1,4 @@
-//ºí·¢º¸µå¿¡¼­ ¾ò¾î¿Ã Å° °ªµé 
+//ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½å¿¡ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Å° ï¿½ï¿½ï¿½ï¿½ 
 #pragma once
 #define BBKEY_PATROLLOC TEXT("PatrolLoc")
 #define BBKEY_TARGET TEXT("Target")
@@ -9,9 +9,5 @@
 #define BBKEY_LastKnownPosition TEXT("LastKnownPosition")
 #define BBKEY_CanShootTarget TEXT("CanShootTarget")
 #define BBKEY_EnableRoaming TEXT("EnableRoaming")
-<<<<<<< HEAD
-//#define BBKEY_SoundObject TEXT("SoundObject")
-=======
 #define BBKEY_IsAttack TEXT("IsAttack")
 #define BBKEY_CanVariousActions TEXT("CanVariousActions")
->>>>>>> aa978d577c1080692cf93d18e90275be5bbfa0de
